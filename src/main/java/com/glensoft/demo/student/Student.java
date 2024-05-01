@@ -21,7 +21,6 @@ public class Student {
             cascade = CascadeType.ALL)
     private StudentProfile studentProfile;
 
-    // '@JsonBackReference' prevents an infinite loop.
     @ManyToOne
     @JoinColumn(name="school_id")
     @JsonBackReference

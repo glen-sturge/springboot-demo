@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 public class StudentMapper {
 
     public Student toStudent(StudentDTO dto) {
+        if (dto == null) {
+            throw new NullPointerException("The student DTO should not be null");
+        }
         var student = new Student();
         student.setFirstName(dto.firstName());
         student.setLastName(dto.lastName());
@@ -25,40 +28,4 @@ public class StudentMapper {
         );
     }
 
-    // method to process a list of Students then return as a List of StudentResponseDTO
-    // he is doing the stream and mapping in the service class. So I am just leaving this here
-    //for historical reasons for now.
-//    public List<StudentResponseDTO> toStudentResponseDTOList(List<Student> studentList) {
-//        return studentList.stream()
-//                .map(this::toStudentResponseDTO)
-//                .collect(Collectors.toList());
-//    }
 }
-
-/*
-* Notes:
-*
-* In the toStudent method, which we are using during Student creation
-* prior to using a DTO for taking the input, when we were taking a Student object instead
-* which looked something like
-*
-*{
-*    "firstName": "John",
-*    "lastName": "Pearce",
-*    "email": "john.pearce2@example.com",
-*    "school": {"id" : 2 }
-*}
-*Where after switching to a DTO, b/c of how we set the schoolId 'school.setId(dto.schoolId());'
-*The json will just look like
-*
-*{
-*    "firstName": "John",
-*    "lastName": "Pearce",
-*    "email": "john.pearce2@example.com",
-*    "schoolId": 2
-*}
-*
-* definitely cleans it up. At this point I am very enthused about DTO patterns.
-*
-*
-* */

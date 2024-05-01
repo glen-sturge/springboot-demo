@@ -16,9 +16,6 @@ public class SchoolService {
         this.schoolMapper = schoolMapper;
     }
 
-//    public List<SchoolDTO> findAll() {
-//        return schoolMapper.toSchoolDTOList(repository.findAll());
-//    }
     public List<SchoolDTO> findAllSchool() {
         return schoolRepository.findAll()
             .stream()
@@ -43,13 +40,11 @@ public class SchoolService {
         schoolRepository.deleteById(id);
     }
 
-//    public List<SchoolDTO> searchSchoolsByName(String name) {
-//        return schoolMapper.toSchoolDTOList(repository.findAllByNameContaining(name));
-//    }
-public List<SchoolDTO> searchSchoolByName(String name) {
-    return schoolRepository.findAllByNameContaining(name)
-            .stream()
-            .map(schoolMapper::toSchoolDTO)
-            .collect(Collectors.toList());
-}
+    public List<SchoolDTO> searchSchoolByName(String name) {
+        return schoolRepository.findAllByNameContaining(name)
+                .stream()
+                .map(schoolMapper::toSchoolDTO)
+                .collect(Collectors.toList());
+    }
+
 }

@@ -16,9 +16,6 @@ public class StudentService {
         this.studentMapper = studentMapper;
     }
 
-//    public List<StudentResponseDTO> findAllStudent() {
-//        return studentMapper.toStudentResponseDTOList(repository.findAll());
-//    }
     public List<StudentResponseDTO> findAllStudent() {
         return repository.findAll()
                 .stream()
@@ -30,9 +27,6 @@ public class StudentService {
         return studentMapper.toStudentResponseDTO(repository.findById(id).orElse(new Student()));
     }
 
-//    public List<StudentResponseDTO> searchStudentsByFirstName(String name) {
-//        return studentMapper.toStudentResponseDTOList(repository.findAllByFirstNameContaining(name));
-//    }
     public List<StudentResponseDTO> searchStudentByFirstName(String name) {
         return repository.findAllByFirstNameContaining(name)
                 .stream()
